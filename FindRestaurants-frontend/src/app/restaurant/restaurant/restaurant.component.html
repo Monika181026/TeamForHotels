@@ -1,1 +1,29 @@
-<p>restaurant works!</p>
+<div class="container">
+<div class="row py-5">
+    <div class="col-6 my-auto">
+        <div class="my-auto d-flex vertical-align-center">
+       <p class="d-inline mx-auto text-center">Rating:</p>
+       <section class="d-inline mx-auto">
+        <mat-checkbox class="d-inline-flex mx-3 text-center" [(ngModel)]="ratingOneTwo">1-2</mat-checkbox>
+        <mat-checkbox class="d-inline-flex mx-3 text-center" [(ngModel)]="ratingTwoThree">2-3</mat-checkbox>
+        <mat-checkbox class="d-inline-flex mx-3 text-center" [(ngModel)]="ratingThreeFour">3-4</mat-checkbox>
+        <mat-checkbox class="d-inline-flex mx-3 text-center" [(ngModel)]="ratingFourFive">4-5</mat-checkbox>
+        </section>
+    </div>
+</div>
+    <div class="col-6 text-center mx-auto">
+        <p class="d-inline">Search by name:</p>
+        <input class="d-inline" type="text">
+        <button (click)='Submit()' >Submit</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <p style="text-align: center;">Map od restaurants</p>
+        <img class="mx-auto img-fluid" src="../../../assets/130113717_178368610637980_8106372931792440608_n.png">
+    </div>
+    <div class="col-6">
+        <p style="text-align: center;">List of restaurants</p>
+    </div>
+</div>
+</div>

@@ -1,3 +1,34 @@
+ h1{
+    
+    
+    
+    color:  rgb(90, 94, 97);
+}
 p{
-    color: blueviolet;
+    
+    
+    color:  rgb(97, 95, 90);
+    
+}
+button {
+    
+    width: 8cm;
+    height: 2cm;
+    font-size: 0.7cm;
+    color: white;
+    background-color: rgb(175, 0, 0);
+  
+} 
+@media screen and (max-width: 767px) {
+    .glyphicon {
+        font-size: 1.7em;   
+        
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .glyphicon {
+        font-size: 3em;
+
+    }
 }

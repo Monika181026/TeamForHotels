@@ -14,5 +14,7 @@ export class HomeComponent implements OnInit {
   click():void{
     console.log('clicked');
   }
-
+  clicknames():void{
+    console.log('click2');
+  }
 }
