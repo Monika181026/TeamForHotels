@@ -20,6 +20,7 @@ export class RestaurantComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, service: RestaurantService) {
     service.findAllRestaurants().subscribe(restaurants => {
       this.restaurants = restaurants;
+      console.log(restaurants);
     });
   }
 

@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RestaurantService {
-  private readonly path = `http://localhost:8080/api`;
+  private readonly path = `http://localhost:8080/api/restaurants`;
   constructor(private http: HttpClient) { }
 
   findAllRestaurants(): Observable<Restaurant[]> {
-    return this.http.get<Restaurant[]>(`${this.path}/restaurants`);
+    return this.http.get<Restaurant[]>(`${this.path}`);
   }
   findById(id: number): Observable<Restaurant> {
     return this.http.get<Restaurant>(`${this.path}/${id}`);
