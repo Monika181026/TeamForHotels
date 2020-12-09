@@ -13,7 +13,7 @@ export class RestaurantService {
   findAllRestaurants(): Observable<Restaurant[]> {
     return this.http.get<Restaurant[]>(`${this.path}`);
   }
-  findById(id: number): Observable<Restaurant> {
+  findById(id: String): Observable<Restaurant> {
     return this.http.get<Restaurant>(`${this.path}/${id}`);
   }
 

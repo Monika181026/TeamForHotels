@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Restaurant } from 'src/app/interface/Restaurant';
 import { RestaurantService } from 'src/app/services/restaurant.service';
+import { switchMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-restaurant',
@@ -17,18 +18,20 @@ export class RestaurantComponent implements OnInit {
   rating: Array<string> | null = new Array;
   restaurants: Restaurant[];
   filteredRestaurants: Restaurant[];
-  constructor(private router: Router, private route: ActivatedRoute, service: RestaurantService) {
-    service.findAllRestaurants().subscribe(restaurants => {
-      this.restaurants = restaurants;
-      console.log(restaurants);
-    });
-  }
+  constructor(private router: Router, private route: ActivatedRoute, private service: RestaurantService) { }
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe(paramMap => {
+    this.service.findAllRestaurants().pipe(
+      switchMap(restaurants => {
+        this.restaurants = restaurants;
+        this.filteredRestaurants = restaurants;
+        return this.route.queryParamMap;
+      }),
+    ).subscribe(paramMap => {
       this.restaurantName = paramMap.get('restaurantName');
       this.validateRating(paramMap.get('rating'));
-    })
+      this.filterData();
+    });
   }
 
   onSubmit(): void {
@@ -40,8 +43,13 @@ export class RestaurantComponent implements OnInit {
       },
       queryParamsHandling: "merge"
     });
-    
   }
+  onOpenRestaurant(id:Number): void {
+    console.log("asddd");
+      this.router.navigate([`restaurants/details/${id}`]);
+
+  }
+
 
   validateRating(rating: string | null) {
     rating?.split(',').forEach(value => {
@@ -83,4 +91,25 @@ export class RestaurantComponent implements OnInit {
     this.rating = arrRating;
   }
 
+  filterData() {
+    this.filterByName();
+    this.filterByRating();
+  }
+
+  filterByRating() {
+    if (this.ratingOneTwo || this.ratingTwoThree || this.ratingThreeFour || this.ratingFourFive) {
+      this.filteredRestaurants = this.filteredRestaurants.filter(restaurant => {
+        return (this.ratingOneTwo && restaurant.rating >= 1 && restaurant.rating <= 2) ||
+          (this.ratingTwoThree && restaurant.rating >= 2 && restaurant.rating <= 3) ||
+          (this.ratingThreeFour && restaurant.rating >= 3 && restaurant.rating <= 4) ||
+          (this.ratingFourFive && restaurant.rating >= 4 && restaurant.rating <= 5)
+      });
+    }
+  }
+
+  filterByName() {
+    this.filteredRestaurants = this.restaurants.filter(restaurant => {
+      return this.restaurantName != null ? (restaurant.name.includes(this.restaurantName)) : true;
+    });
+  }
 }
