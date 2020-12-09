@@ -26,11 +26,33 @@
     </div>
     <div class="row">
         <div class="col-6">
-            <p style="text-align: center;">Map od restaurants</p>
+            <h1 style="text-align: center;">Map od restaurants</h1>
             <img class="mx-auto img-fluid" src="../../../assets/130113717_178368610637980_8106372931792440608_n.png">
         </div>
         <div class="col-6">
-            <p style="text-align: center;">List of restaurants</p>
+            <h1 class="font-weight-bold" style="text-align: center;">List of restaurants</h1>
+            <hr class="mx-5">
+            <ul style="list-style: none;">
+                <div class="container">
+                    <li>
+                        <div class="row">
+                            <div class="col-6 pr-0">
+                                <h2>Restaurant name</h2>
+                            </div>
+                            <div class="col-6 pl-0">
+                                <h2>Rating</h2>
+                            </div>
+                        </div>
+                    </li>
+                </div>
+                <hr class="mb-3 mt-0">
+                <div style="height: 500px; overflow: auto;">
+                    <li *ngFor="let restaurant of filteredRestaurants">
+                        <item-restaurant (click)='onOpenRestaurant(restaurant.id)' [name]=restaurant.name [rating]=restaurant.rating>
+                        </item-restaurant>
+                    </li>
+                </div>
+            </ul>
         </div>
     </div>
 </div>

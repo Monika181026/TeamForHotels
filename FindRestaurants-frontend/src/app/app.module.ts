@@ -11,8 +11,8 @@ import { HomeComponent } from './home/home/home.component';
 import { RestaurantComponent } from './restaurant/restaurant/restaurant.component';
 import { HeaderComponent } from './header/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
+import { ItemRestaurantComponent } from './restaurant/item-restaurant/item-restaurant.component';
+import { RestaurantDetailsComponent } from './restaurant/restaurant-details/restaurant-details.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     RestaurantComponent,
     HeaderComponent,
-   
+    ItemRestaurantComponent,
+    RestaurantDetailsComponent
   ],
   imports: [
     BrowserModule,

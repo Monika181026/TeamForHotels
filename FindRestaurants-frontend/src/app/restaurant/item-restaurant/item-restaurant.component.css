@@ -1,0 +1,10 @@
+.list_item_style {
+    background: rgb(230, 143, 62);
+    font-size: 0.5cm;
+    
+}
+.list_item_style:hover{
+    cursor: pointer;
+    background: white;
+   transition: 500ms linear;
+}
