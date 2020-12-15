@@ -10,6 +10,9 @@ import { switchMap, map } from 'rxjs/operators';
   styleUrls: ['./restaurant.component.css']
 })
 export class RestaurantComponent implements OnInit {
+  title = 'My first AGM project';
+  lat = 41.999522;
+  lng = 21.4218147;
   ratingOneTwo = false;
   ratingTwoThree = false;
   ratingThreeFour = false;
@@ -49,7 +52,9 @@ export class RestaurantComponent implements OnInit {
       this.router.navigate([`restaurants/details/${id}`]);
 
   }
-
+  clickedMarker(label: string, index: number) {
+    console.log(`clicked the marker: ${label || index}`);
+  }
 
   validateRating(rating: string | null) {
     rating?.split(',').forEach(value => {
