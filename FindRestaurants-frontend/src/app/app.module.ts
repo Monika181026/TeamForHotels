@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ItemRestaurantComponent } from './restaurant/item-restaurant/item-restaurant.component';
 import { RestaurantDetailsComponent } from './restaurant/restaurant-details/restaurant-details.component';
+import { FooterComponent } from './footer/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { RestaurantDetailsComponent } from './restaurant/restaurant-details/rest
     RestaurantComponent,
     HeaderComponent,
     ItemRestaurantComponent,
-    RestaurantDetailsComponent
+    RestaurantDetailsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

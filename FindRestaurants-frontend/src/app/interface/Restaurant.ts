@@ -1,8 +1,7 @@
-
 export class Restaurant {
-    id: Number;
-    name: String;
-    latitude: Number;
-    longitude: Number;
-    rating: Number;
+    id: number;
+    name: string;
+    lat: number;
+    lon: number;
+    rating: number;
 }

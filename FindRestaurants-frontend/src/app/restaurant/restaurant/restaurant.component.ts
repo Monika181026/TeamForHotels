@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Restaurant } from 'src/app/interface/Restaurant';
 import { RestaurantService } from 'src/app/services/restaurant.service';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap} from 'rxjs/operators';
+import { ViewChild } from '@angular/core';
+import { ElementRef } from '@angular/core';
+
+declare var H: any;
 
 @Component({
   selector: 'app-restaurant',
@@ -10,6 +14,10 @@ import { switchMap, map } from 'rxjs/operators';
   styleUrls: ['./restaurant.component.css']
 })
 export class RestaurantComponent implements OnInit {
+  @ViewChild("map")
+  public mapElement: ElementRef;
+  private platform: any;
+  map:any;
   ratingOneTwo = false;
   ratingTwoThree = false;
   ratingThreeFour = false;
@@ -18,7 +26,13 @@ export class RestaurantComponent implements OnInit {
   rating: Array<string> | null = new Array;
   restaurants: Restaurant[];
   filteredRestaurants: Restaurant[];
-  constructor(private router: Router, private route: ActivatedRoute, private service: RestaurantService) { }
+
+
+  constructor(private router: Router, private route: ActivatedRoute, private service: RestaurantService) {
+    this.platform = new H.service.Platform({
+      "apikey": "MN8C1R3UIgtvsAfJvR4XfY0xP4yWwclrGOv0xMEf298"
+    });
+  }
 
   ngOnInit(): void {
     this.service.findAllRestaurants().pipe(
@@ -31,8 +45,34 @@ export class RestaurantComponent implements OnInit {
       this.restaurantName = paramMap.get('restaurantName');
       this.validateRating(paramMap.get('rating'));
       this.filterData();
+      this.refreshMap();
     });
   }
+
+  refreshMap(){
+    this.map.removeObjects(this.map.getObjects());
+    this.filteredRestaurants.forEach(value=>{
+      let marker = new H.map.Marker({ lat: value.lat, lng: value.lon});
+      this.map.addObject(marker);
+    });
+  }
+
+  public ngAfterViewInit() {
+    let defaultLayers = this.platform.createDefaultLayers();
+    this.map = new H.Map(
+      this.mapElement.nativeElement,
+      defaultLayers.vector.normal.map,
+      {
+        center: { lat: 41.9962697, lng: 21.4328716 },
+        pixelRatio: window.devicePixelRatio || 1
+      }
+    );
+    var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
+    var ui = H.ui.UI.createDefault(this.map, defaultLayers);
+    this.map.setZoom(14);
+    window.addEventListener('resize', () => this.map.getViewPort().resize());
+  }
+
 
   onSubmit(): void {
     this.initRouterParams();
@@ -44,12 +84,10 @@ export class RestaurantComponent implements OnInit {
       queryParamsHandling: "merge"
     });
   }
-  onOpenRestaurant(id:Number): void {
-    console.log("asddd");
-      this.router.navigate([`restaurants/details/${id}`]);
 
+  onOpenRestaurant(id: Number): void {
+    this.router.navigate([`restaurants/details/${id}`]);
   }
-
 
   validateRating(rating: string | null) {
     rating?.split(',').forEach(value => {
