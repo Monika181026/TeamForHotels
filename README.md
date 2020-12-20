@@ -1,6 +1,8 @@
 # TeamForRestaurants
 School project for subjest Design and Architecture of software
 
+After cloning the repository, navigate to FindRestaurants-frontend and execute npm install.
+
 Database:
 PostgreSQL 13
 user:postgres
