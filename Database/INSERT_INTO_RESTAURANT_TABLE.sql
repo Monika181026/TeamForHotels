@@ -1,5 +1,1 @@
-CREATE PROCEDURE INSERT_INTO_RESTAURANT_TABLE(lon double precision, lat double precision, name varchar(100), rating double precision)
-LANGUAGE SQL
-AS $$
-INSERT INTO restaurant (lon,lat,name,rating) VALUES(lon,lat,name,rating);
-$$;
+INSERT INTO restorani(lon, lat, name, rating) VALUES(15.2323, 16.21212, Pelister, 4.5)
