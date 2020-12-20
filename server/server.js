@@ -3,7 +3,7 @@ app = express(),
 cors = require('cors');
 path = require('path');
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 8000));
 
 app.listen(app.get('port'), () => console.log('Server listening on port ' + app.get('port')));
 
