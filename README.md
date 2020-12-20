@@ -9,4 +9,6 @@ port:5432
 
 name of data file: hotels-filtered.txt
 
---> Execute setup.bat to initialize database
+--> Execute setup.bat to initialize database(working only on windows)
+
+***if psql thorws error -> check if psql.exe is found at location "C:\Program Files\PostgreSQL\13\bin\psql.exe"
