@@ -10,7 +10,7 @@ app.listen(app.get('port'), () => console.log('Server listening on port ' + app.
 app.use(cors());
 app.use(express.static(path.join(__dirname, "../FindRestaurants-frontend/dist")));
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, "../FindRestaurants-frontend/dist", "index.html"));
 });
 
