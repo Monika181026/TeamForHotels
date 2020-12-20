@@ -1,0 +1,58 @@
+<div class="container pb-5">
+    <div class="form-group row py-5">
+        <div class="col-md-6 col-12 my-auto">
+            <div class="my-auto d-flex vertical-align-center">
+                <p class="d-inline mx-auto text-center">Rating:</p>
+                <section class="d-inline mx-auto">
+                    <mat-checkbox class="d-inline-flex mx-2 text-center" [(ngModel)]="ratingOneTwo">1-2
+                    </mat-checkbox>
+                    <mat-checkbox class="d-inline-flex mx-2 text-center" [(ngModel)]="ratingTwoThree">2-3
+                    </mat-checkbox>
+                    <mat-checkbox class="d-inline-flex mx-2 text-center" [(ngModel)]="ratingThreeFour">3-4
+                    </mat-checkbox>
+                    <mat-checkbox class="d-inline-flex mx-2 text-center" [(ngModel)]="ratingFourFive">4-5
+                    </mat-checkbox>
+                </section>
+            </div>
+        </div>
+        <div class="col-md-6 col-12 text-center mx-auto">
+            <form (ngSubmit)="onSubmit()">
+                <p class="d-inline">Search by name:</p>
+                <input class="d-inline" type="text" name="name" placeholder="Restaurant Name"
+                    [(ngModel)]="restaurantName">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-12">
+            <h1 style="text-align: center;">Map od restaurants</h1>
+            <div #map style="width: 100%; height: 400px"></div>
+        </div>
+        <div class="col-md-6 col-12">
+            <h1 class="font-weight-bold" style="text-align: center;">List of restaurants</h1>
+            <hr class="mx-5">
+            <ul style="list-style: none;">
+                <div class="container">
+                    <li>
+                        <div class="row">
+                            <div class="col-6 pr-0">
+                                <h2>Restaurant name</h2>
+                            </div>
+                            <div class="col-6 pl-0">
+                                <h2>Rating</h2>
+                            </div>
+                        </div>
+                    </li>
+                </div>
+                <div style="height: 500px; overflow: auto;">
+                    <li *ngFor="let restaurant of filteredRestaurants">
+                        <item-restaurant (click)='onOpenRestaurant(restaurant.id)' [name]=restaurant.name
+                            [rating]=restaurant.rating>
+                        </item-restaurant>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+.header{
+    color:  rgb(90, 94, 97);
+    background-color: rgb(230, 143, 62);
+    font-family: Arial, Helvetica, sans-serif;
+}
+.navbar-brand {
+    transform: translateX(-50%);
+    left: 50%;
+  }
+  @media screen and (max-width: 767px) {
+    .navbar-brand  {
+      width: 100px;
+      max-width: 100px;
+    }
+  } 
+  
+  @media screen and (min-width: 768px) {
+    .navbar-brand{
+        position: absolute;
+        
+    }
+  }
