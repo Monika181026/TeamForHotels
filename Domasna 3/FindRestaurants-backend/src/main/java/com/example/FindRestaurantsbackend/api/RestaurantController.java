@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/restaurants")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://teamforrestaurants.netlify.app")
 public class RestaurantController {
     private final RestaurantService service;
 

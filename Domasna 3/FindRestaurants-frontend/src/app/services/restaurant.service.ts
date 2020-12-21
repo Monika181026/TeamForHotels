@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RestaurantService {
-  private readonly path = `http://localhost:8080/api/restaurants`;
+  private readonly path = `https://apprestaurants.herokuapp.com/api/restaurants`;
   constructor(private http: HttpClient) { }
 
   findAllRestaurants(): Observable<Restaurant[]> {
