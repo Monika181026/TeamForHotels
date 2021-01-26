@@ -11,10 +11,4 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  click():void{
-    console.log('clicked');
-  }
-  clicknames():void{
-    console.log('click2');
-  }
 }

@@ -16,14 +16,13 @@ restaurant:Restaurant;
   ngOnInit(): void {
     this.route.paramMap.pipe(
       switchMap(params => {
-        console.log("asd")
+        //get the id for the Restaurant from paramMa
         let v=params.get('id');
-        console.log(v)
+        //call the service to get the details for the specific Restaurant
         return this.service.findById(params.get('id'));
       })
      ,).subscribe(restaurant => {       
         this.restaurant=restaurant;
-        console.log(restaurant);
       });
   }
 }

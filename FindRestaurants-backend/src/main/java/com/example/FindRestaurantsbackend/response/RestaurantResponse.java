@@ -1,35 +1,14 @@
-package com.example.FindRestaurantsbackend.domain;
+package com.example.FindRestaurantsbackend.response;
 
-import javax.persistence.*;
-
-@Entity
-@Table(schema = "public", name = "restaurant")
-public class Restaurant {
-    //id Restaurant primary key
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class RestaurantResponse {
     private int id;
-
-    //longitude coordinate
-    @Column(name = "lon")
     private double lon;
-
-    //latitude coordinate
-    @Column(name = "lat")
     private double lat;
-
-    //Restaurant name
-    @Column(name = "name")
     private String name;
-
-    //Restaurant rating
-    @Column(name = "rating")
     private double rating;
 
-    public Restaurant() {
-    }
-
-    public Restaurant(double lon, double lat, String name, double rating) {
+    public RestaurantResponse(int id, double lon, double lat, String name, double rating) {
+        this.id = id;
         this.lon = lon;
         this.lat = lat;
         this.name = name;

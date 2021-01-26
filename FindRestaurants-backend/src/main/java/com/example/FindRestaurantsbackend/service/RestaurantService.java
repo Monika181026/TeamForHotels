@@ -15,10 +15,12 @@ public class RestaurantService {
         this.repository = repository;
     }
 
+    //returns a list of Restaurants from the repository
     public List<Restaurant> findAllRestaurants() {
         return repository.findAll();
     }
 
+    //return a specific Restaurant by id
     public Optional<Restaurant> findById(Integer id) {
         return repository.findById(id);
     }

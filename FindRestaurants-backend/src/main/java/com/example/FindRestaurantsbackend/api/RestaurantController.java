@@ -1,31 +1,31 @@
 package com.example.FindRestaurantsbackend.api;
 
-import com.example.FindRestaurantsbackend.domain.Restaurant;
-import com.example.FindRestaurantsbackend.service.RestaurantService;
+import com.example.FindRestaurantsbackend.mapper.RestaurantMapper;
+import com.example.FindRestaurantsbackend.response.RestaurantResponse;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/restaurants")
 @CrossOrigin(origins = "http://localhost:4200")
 public class RestaurantController {
-    private final RestaurantService service;
+    private final RestaurantMapper mapper;
 
-    public RestaurantController(RestaurantService service) {
-        this.service = service;
+    public RestaurantController(RestaurantMapper mapper) {
+        this.mapper = mapper;
     }
 
+    //Returns a list of all Restaurants
     @GetMapping
-    public List<Restaurant> findAllRestaurants() {
-        return service.findAllRestaurants();
+    public List<RestaurantResponse> findAllRestaurants() {
+        return mapper.getAllRestaurants();
     }
 
+    //Returns a specific Restaurant
+    //Requires id value
     @GetMapping("/{id}")
-    public Restaurant findById(@PathVariable Integer id) {
-        return Optional.of(service.findById(id)).get()
-                .orElseThrow(() -> new EntityNotFoundException("Entity with id: "+id+" does not exist!"));
+    public RestaurantResponse findById(@PathVariable Integer id) {
+        return mapper.getRestaurant(id);
     }
 }
